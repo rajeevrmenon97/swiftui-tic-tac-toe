@@ -69,7 +69,7 @@ struct ContentView: View {
                     .padding(10)
                     .border(.black, width: 5)
             }
-        }.padding()
+        }.padding().background(.white)
     }
     
     var gameOverAlert: Alert {
