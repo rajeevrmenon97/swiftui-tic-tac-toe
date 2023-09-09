@@ -82,7 +82,7 @@ struct ContentView: View {
         return Alert(
             title: Text("Game Over"),
             message: Text(msg),
-            dismissButton: .default(Text("Get prize!")) {
+            dismissButton: .default(Text("Get the prize!")) {
                 resetGrid()
                 openYouTube()
             }
