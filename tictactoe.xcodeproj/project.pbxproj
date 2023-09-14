@@ -14,6 +14,7 @@
 		5DD644A62AACF16B00F15A7F /* tictactoeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD644A52AACF16B00F15A7F /* tictactoeTests.swift */; };
 		5DD644B02AACF16B00F15A7F /* tictactoeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD644AF2AACF16B00F15A7F /* tictactoeUITests.swift */; };
 		5DD644B22AACF16B00F15A7F /* tictactoeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD644B12AACF16B00F15A7F /* tictactoeUITestsLaunchTests.swift */; };
+		5DF601382AB3858600D7FA37 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF601372AB3858600D7FA37 /* GameView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		5DD644AB2AACF16B00F15A7F /* tictactoeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tictactoeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DD644AF2AACF16B00F15A7F /* tictactoeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tictactoeUITests.swift; sourceTree = "<group>"; };
 		5DD644B12AACF16B00F15A7F /* tictactoeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tictactoeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		5DF601372AB3858600D7FA37 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				5DD644972AACF16B00F15A7F /* Assets.xcassets */,
 				5DD644992AACF16B00F15A7F /* tictactoe.entitlements */,
 				5DD6449A2AACF16B00F15A7F /* Preview Content */,
+				5DF601372AB3858600D7FA37 /* GameView.swift */,
 			);
 			path = tictactoe;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DD644962AACF16A00F15A7F /* ContentView.swift in Sources */,
+				5DF601382AB3858600D7FA37 /* GameView.swift in Sources */,
 				5DD644942AACF16A00F15A7F /* tictactoeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
