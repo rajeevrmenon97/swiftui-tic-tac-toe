@@ -21,7 +21,22 @@ struct SettingsTab: View {
 
 struct AboutTab: View {
     var body: some View {
-        Text("About author")
+        VStack {
+            Spacer()
+            Text("Created By").bold().font(.headline)
+            Text("Rajeev Menon").font(.subheadline).padding()
+            Button(action: {
+                if let url = URL(string: "https://github.com/rajeevrmenon97/swiftui-tic-tac-toe") {
+                    UIApplication.shared.open(url)
+                }
+            }) {
+                HStack {
+                    Image(systemName: "link")
+                    Text("Github").foregroundColor(.blue)
+                }
+            }
+            Spacer()
+        }
     }
 }
 

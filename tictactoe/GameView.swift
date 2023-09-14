@@ -43,6 +43,22 @@ struct GridSquare: View {
     }
 }
 
+struct InstructionsView: View {
+    @Binding var showInstructions: Bool
+    
+    var body: some View {
+        VStack {
+            Text("Tic-Tac-Toe Instructions")
+                .font(.largeTitle)
+                .padding()
+            
+            Text("Tic-Tac-Toe is a two-player game where you take turns marking a 3x3 grid with your symbol (either X or O). The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row wins the game.")
+                .padding()
+        }.padding()
+        
+    }
+}
+
 struct GameView: View {
     
     // Array holding the state of each square in the grid
@@ -56,6 +72,8 @@ struct GameView: View {
     
     // Game over or not? Used for triggering the alert
     @State private var gameOver: Bool = false
+    
+    @State private var showInstructions = false
     
     // Function to clear the grid
     func resetGrid() {
@@ -176,8 +194,10 @@ struct GameView: View {
             }
             
             // Button to reset the grid
-            Button(action: resetGrid) {
-                Text("Reset")
+            Button(action: {
+                showInstructions.toggle()
+            }) {
+                Text("How to play?")
                     .fontWeight(.bold)
                     .font(.title)
                     .padding()
@@ -185,6 +205,8 @@ struct GameView: View {
                     .foregroundColor(Color("PrimaryColor"))
                     .padding(10)
                     .border(Color("SecondaryColor"), width: 5)
+            }.sheet(isPresented: $showInstructions) {
+                InstructionsView(showInstructions: $showInstructions)
             }
         }.padding()
     }
