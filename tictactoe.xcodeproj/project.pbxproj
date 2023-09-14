@@ -101,11 +101,11 @@
 			children = (
 				5DD644932AACF16A00F15A7F /* tictactoeApp.swift */,
 				5DD644952AACF16A00F15A7F /* ContentView.swift */,
+				5DF601372AB3858600D7FA37 /* GameView.swift */,
+				5DF6013B2AB3A2DE00D7FA37 /* SettingsView.swift */,
 				5DD644972AACF16B00F15A7F /* Assets.xcassets */,
 				5DD644992AACF16B00F15A7F /* tictactoe.entitlements */,
 				5DD6449A2AACF16B00F15A7F /* Preview Content */,
-				5DF601372AB3858600D7FA37 /* GameView.swift */,
-				5DF6013B2AB3A2DE00D7FA37 /* SettingsView.swift */,
 			);
 			path = tictactoe;
 			sourceTree = "<group>";

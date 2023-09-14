@@ -104,10 +104,13 @@ struct GameView: View {
         return Alert(
             title: Text("Game Over"),
             message: Text(msg),
-            dismissButton: .default(Text("Get the prize!")) {
+            primaryButton: .default(Text("Get the prize!"), action: {
                 resetGrid()
                 openYouTube()
-            }
+            }),
+            secondaryButton: .default(Text("New Game"), action: {
+                resetGrid()
+            })
         )
     }
     
