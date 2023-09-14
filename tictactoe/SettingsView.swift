@@ -15,7 +15,7 @@ struct SettingsTab: View {
             Section(header: Text("Enable dark mode")) {
                 Toggle("Dark Mode", isOn: $isDarkMode)
             }
-        }.background(Color("PrimaryColor"))
+        }
     }
 }
 
@@ -26,18 +26,19 @@ struct AboutTab: View {
 }
 
 struct SettingsView: View {
+    @State var selectedTab = 1
+    
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             SettingsTab()
                 .tabItem {
                     Label("Settings", systemImage: "gearshape.fill")
-                    
-                }
+                }.tag(1)
             AboutTab()
                 .tabItem {
                     Label("About", systemImage: "info.circle")
-                }
-        }
+                }.tag(2)
+        }.navigationTitle(selectedTab == 1 ? "Settings" : "About")
     }
 }
 

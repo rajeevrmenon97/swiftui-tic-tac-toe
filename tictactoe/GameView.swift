@@ -186,7 +186,7 @@ struct GameView: View {
                     .padding(10)
                     .border(Color("SecondaryColor"), width: 5)
             }
-        }.padding().background(Color("PrimaryColor"))
+        }.padding()
     }
 }
 
