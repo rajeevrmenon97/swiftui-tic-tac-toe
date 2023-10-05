@@ -7,58 +7,6 @@
 
 import SwiftUI
 
-// Enum to hold various states of the grid
-enum GridState {
-    case empty, circle, cross
-}
-
-// Single square in a grid
-struct GridSquare: View {
-    let size: CGFloat
-    let xIndex: Int
-    let yIndex: Int
-    
-    @Binding var currentState: GridState
-    
-    var body: some View {
-        ZStack{
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color("SecondaryColor"))
-                .frame(width: size, height: size)
-            if currentState == .circle {
-                Image(systemName: "circle")
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundColor(Color("PrimaryColor"))
-                    .frame(width: size * 0.5)
-            } else if currentState == .cross {
-                Image(systemName: "multiply")
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundColor(Color("PrimaryColor"))
-                    .frame(width: size * 0.5)
-            }
-            
-        }
-    }
-}
-
-struct InstructionsView: View {
-    @Binding var showInstructions: Bool
-    
-    var body: some View {
-        VStack {
-            Text("Tic-Tac-Toe Instructions")
-                .font(.largeTitle)
-                .padding()
-            
-            Text("Tic-Tac-Toe is a two-player game where you take turns marking a 3x3 grid with your symbol (either X or O). The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row wins the game.")
-                .padding()
-        }.padding()
-        
-    }
-}
-
 struct GameView: View {
     
     // Array holding the state of each square in the grid
@@ -209,14 +157,12 @@ struct GameView: View {
                     .padding(10)
                     .border(Color("SecondaryColor"), width: 5)
             }.sheet(isPresented: $showInstructions) {
-                InstructionsView(showInstructions: $showInstructions)
+                Instructions(showInstructions: $showInstructions)
             }
         }.padding()
     }
 }
 
-struct GameView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameView()
-    }
+#Preview {
+    GameView()
 }

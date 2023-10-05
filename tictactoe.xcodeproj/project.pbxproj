@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D576ABC2ACF28D60057F3A4 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D576ABB2ACF28D60057F3A4 /* MainMenuView.swift */; };
+		5D576ABF2ACF29A80057F3A4 /* SettingsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D576ABE2ACF29A80057F3A4 /* SettingsTab.swift */; };
+		5D576AC12ACF29C80057F3A4 /* AboutTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D576AC02ACF29C80057F3A4 /* AboutTab.swift */; };
+		5D576AC32ACF29FC0057F3A4 /* GridSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D576AC22ACF29FC0057F3A4 /* GridSquare.swift */; };
+		5D576AC52ACF2A5A0057F3A4 /* Instructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D576AC42ACF2A5A0057F3A4 /* Instructions.swift */; };
+		5D576AC82ACF2AA50057F3A4 /* GridState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D576AC72ACF2AA50057F3A4 /* GridState.swift */; };
 		5DD644942AACF16A00F15A7F /* tictactoeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD644932AACF16A00F15A7F /* tictactoeApp.swift */; };
 		5DD644962AACF16A00F15A7F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD644952AACF16A00F15A7F /* ContentView.swift */; };
 		5DD644982AACF16B00F15A7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DD644972AACF16B00F15A7F /* Assets.xcassets */; };
@@ -33,6 +39,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5D576ABB2ACF28D60057F3A4 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
+		5D576ABE2ACF29A80057F3A4 /* SettingsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTab.swift; sourceTree = "<group>"; };
+		5D576AC02ACF29C80057F3A4 /* AboutTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTab.swift; sourceTree = "<group>"; };
+		5D576AC22ACF29FC0057F3A4 /* GridSquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridSquare.swift; sourceTree = "<group>"; };
+		5D576AC42ACF2A5A0057F3A4 /* Instructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instructions.swift; sourceTree = "<group>"; };
+		5D576AC72ACF2AA50057F3A4 /* GridState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridState.swift; sourceTree = "<group>"; };
 		5DD644902AACF16A00F15A7F /* tictactoe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tictactoe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DD644932AACF16A00F15A7F /* tictactoeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tictactoeApp.swift; sourceTree = "<group>"; };
 		5DD644952AACF16A00F15A7F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -70,6 +82,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D576ABA2ACF28B30057F3A4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5D576ABD2ACF298E0057F3A4 /* Components */,
+				5DD644952AACF16A00F15A7F /* ContentView.swift */,
+				5DF601372AB3858600D7FA37 /* GameView.swift */,
+				5D576ABB2ACF28D60057F3A4 /* MainMenuView.swift */,
+				5DF6013B2AB3A2DE00D7FA37 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5D576ABD2ACF298E0057F3A4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5D576AC02ACF29C80057F3A4 /* AboutTab.swift */,
+				5D576AC22ACF29FC0057F3A4 /* GridSquare.swift */,
+				5D576AC42ACF2A5A0057F3A4 /* Instructions.swift */,
+				5D576ABE2ACF29A80057F3A4 /* SettingsTab.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		5D576AC62ACF2A970057F3A4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5D576AC72ACF2AA50057F3A4 /* GridState.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		5DD644872AACF16A00F15A7F = {
 			isa = PBXGroup;
 			children = (
@@ -91,10 +134,9 @@
 		5DD644922AACF16A00F15A7F /* tictactoe */ = {
 			isa = PBXGroup;
 			children = (
+				5D576AC62ACF2A970057F3A4 /* Models */,
+				5D576ABA2ACF28B30057F3A4 /* Views */,
 				5DD644932AACF16A00F15A7F /* tictactoeApp.swift */,
-				5DD644952AACF16A00F15A7F /* ContentView.swift */,
-				5DF601372AB3858600D7FA37 /* GameView.swift */,
-				5DF6013B2AB3A2DE00D7FA37 /* SettingsView.swift */,
 				5DD644972AACF16B00F15A7F /* Assets.xcassets */,
 				5DD644992AACF16B00F15A7F /* tictactoe.entitlements */,
 				5DD6449A2AACF16B00F15A7F /* Preview Content */,
@@ -240,6 +282,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D576AC12ACF29C80057F3A4 /* AboutTab.swift in Sources */,
+				5D576AC52ACF2A5A0057F3A4 /* Instructions.swift in Sources */,
+				5D576ABF2ACF29A80057F3A4 /* SettingsTab.swift in Sources */,
+				5D576AC82ACF2AA50057F3A4 /* GridState.swift in Sources */,
+				5D576AC32ACF29FC0057F3A4 /* GridSquare.swift in Sources */,
+				5D576ABC2ACF28D60057F3A4 /* MainMenuView.swift in Sources */,
 				5DD644962AACF16A00F15A7F /* ContentView.swift in Sources */,
 				5DF6013C2AB3A2DE00D7FA37 /* SettingsView.swift in Sources */,
 				5DF601382AB3858600D7FA37 /* GameView.swift in Sources */,

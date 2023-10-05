@@ -1,18 +1,11 @@
 //
-//  ContentView.swift
+//  MainMenuView.swift
 //  tictactoe
 //
-//  Created by Rajeev R Menon on 9/9/23.
+//  Created by Rajeev R Menon on 10/5/23.
 //
 
 import SwiftUI
-
-// Main view
-struct ContentView: View {
-    var body: some View {
-        MainMenuView()
-    }
-}
 
 struct MainMenuView: View {
     var body: some View {
@@ -62,8 +55,6 @@ struct MainMenuView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ForEach(ColorScheme.allCases, id: \.self, content: ContentView().preferredColorScheme)
-    }
+#Preview {
+    MainMenuView()
 }
