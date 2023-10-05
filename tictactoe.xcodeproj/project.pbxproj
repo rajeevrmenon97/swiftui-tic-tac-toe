@@ -13,6 +13,8 @@
 		5D576AC32ACF29FC0057F3A4 /* GridSquare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D576AC22ACF29FC0057F3A4 /* GridSquare.swift */; };
 		5D576AC52ACF2A5A0057F3A4 /* Instructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D576AC42ACF2A5A0057F3A4 /* Instructions.swift */; };
 		5D576AC82ACF2AA50057F3A4 /* GridState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D576AC72ACF2AA50057F3A4 /* GridState.swift */; };
+		5D576ACB2ACF2E200057F3A4 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D576ACA2ACF2E200057F3A4 /* Player.swift */; };
+		5D576ACE2ACF2EDE0057F3A4 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D576ACD2ACF2EDE0057F3A4 /* GameViewModel.swift */; };
 		5DD644942AACF16A00F15A7F /* tictactoeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD644932AACF16A00F15A7F /* tictactoeApp.swift */; };
 		5DD644962AACF16A00F15A7F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD644952AACF16A00F15A7F /* ContentView.swift */; };
 		5DD644982AACF16B00F15A7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DD644972AACF16B00F15A7F /* Assets.xcassets */; };
@@ -45,6 +47,8 @@
 		5D576AC22ACF29FC0057F3A4 /* GridSquare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridSquare.swift; sourceTree = "<group>"; };
 		5D576AC42ACF2A5A0057F3A4 /* Instructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instructions.swift; sourceTree = "<group>"; };
 		5D576AC72ACF2AA50057F3A4 /* GridState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridState.swift; sourceTree = "<group>"; };
+		5D576ACA2ACF2E200057F3A4 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		5D576ACD2ACF2EDE0057F3A4 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		5DD644902AACF16A00F15A7F /* tictactoe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tictactoe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DD644932AACF16A00F15A7F /* tictactoeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tictactoeApp.swift; sourceTree = "<group>"; };
 		5DD644952AACF16A00F15A7F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -109,8 +113,17 @@
 			isa = PBXGroup;
 			children = (
 				5D576AC72ACF2AA50057F3A4 /* GridState.swift */,
+				5D576ACA2ACF2E200057F3A4 /* Player.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		5D576ACC2ACF2ECB0057F3A4 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5D576ACD2ACF2EDE0057F3A4 /* GameViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		5DD644872AACF16A00F15A7F = {
@@ -136,6 +149,7 @@
 			children = (
 				5D576AC62ACF2A970057F3A4 /* Models */,
 				5D576ABA2ACF28B30057F3A4 /* Views */,
+				5D576ACC2ACF2ECB0057F3A4 /* ViewModels */,
 				5DD644932AACF16A00F15A7F /* tictactoeApp.swift */,
 				5DD644972AACF16B00F15A7F /* Assets.xcassets */,
 				5DD644992AACF16B00F15A7F /* tictactoe.entitlements */,
@@ -282,6 +296,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D576ACE2ACF2EDE0057F3A4 /* GameViewModel.swift in Sources */,
+				5D576ACB2ACF2E200057F3A4 /* Player.swift in Sources */,
 				5D576AC12ACF29C80057F3A4 /* AboutTab.swift in Sources */,
 				5D576AC52ACF2A5A0057F3A4 /* Instructions.swift in Sources */,
 				5D576ABF2ACF29A80057F3A4 /* SettingsTab.swift in Sources */,
