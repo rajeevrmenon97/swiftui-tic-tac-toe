@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// About author tab
 struct AboutTab: View {
     var body: some View {
         VStack {

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Main view for settings
 struct SettingsView: View {
     @State var selectedTab = 1
     
