@@ -11,7 +11,9 @@ struct GameView: View {
     
     @State private var showInstructions = false
     
-    @StateObject private var gameViewModel = GameViewModel(player1: Player(name: "Player 1", symbol: .cross), player2: Player(name: "Player 2", symbol: .circle))
+    @ObservedObject var gameViewModel: GameViewModel
+    
+    @Binding var displayedView: Int
     
     // Function to open youtube link
     func openYouTube() {
@@ -22,7 +24,7 @@ struct GameView: View {
     
     // Alert when the game is over
     var gameOverAlert: Alert {
-        var msg = "\(gameViewModel.currentPlayer.name) wins!"
+        let msg = "\(gameViewModel.currentPlayer.name) wins!"
         return Alert(
             title: Text("Game Over"),
             message: Text(msg),
@@ -80,8 +82,4 @@ struct GameView: View {
             }
         }.padding()
     }
-}
-
-#Preview {
-    GameView()
 }

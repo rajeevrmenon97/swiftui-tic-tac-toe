@@ -17,11 +17,13 @@ class GameViewModel: ObservableObject {
     
     private var player1: Player
     private var player2: Player
+    private var multipeerSession: MultipeerSession?
     
-    init(player1: Player, player2: Player) {
+    init(player1: Player, player2: Player, multipeerSession: MultipeerSession? = nil) {
         self.player1 = player1
         self.player2 = player2
         self.currentPlayer = player1
+        self.multipeerSession = multipeerSession
     }
     
     // Function to clear the grid

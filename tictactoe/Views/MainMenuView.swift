@@ -27,7 +27,7 @@ struct MainMenuView: View {
                         .foregroundColor(Color("SecondaryColor"))
                         .font(.title)
                         .padding()
-                    NavigationLink(destination: GameView()) {
+                    NavigationLink(destination: GameModeView()) {
                         Text("Start Game")
                             .fontWeight(.bold)
                             .font(.title)

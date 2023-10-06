@@ -15,6 +15,9 @@
 		5D576AC82ACF2AA50057F3A4 /* GridState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D576AC72ACF2AA50057F3A4 /* GridState.swift */; };
 		5D576ACB2ACF2E200057F3A4 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D576ACA2ACF2E200057F3A4 /* Player.swift */; };
 		5D576ACE2ACF2EDE0057F3A4 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D576ACD2ACF2EDE0057F3A4 /* GameViewModel.swift */; };
+		5D576AD02ACF8EC00057F3A4 /* GameModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D576ACF2ACF8EC00057F3A4 /* GameModeView.swift */; };
+		5D576AD32ACF97BE0057F3A4 /* MultiPeerSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D576AD22ACF97BE0057F3A4 /* MultiPeerSession.swift */; };
+		5D576AD52ACF9BA50057F3A4 /* PairingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D576AD42ACF9BA50057F3A4 /* PairingView.swift */; };
 		5DD644942AACF16A00F15A7F /* tictactoeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD644932AACF16A00F15A7F /* tictactoeApp.swift */; };
 		5DD644962AACF16A00F15A7F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD644952AACF16A00F15A7F /* ContentView.swift */; };
 		5DD644982AACF16B00F15A7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DD644972AACF16B00F15A7F /* Assets.xcassets */; };
@@ -32,6 +35,9 @@
 		5D576AC72ACF2AA50057F3A4 /* GridState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridState.swift; sourceTree = "<group>"; };
 		5D576ACA2ACF2E200057F3A4 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		5D576ACD2ACF2EDE0057F3A4 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		5D576ACF2ACF8EC00057F3A4 /* GameModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeView.swift; sourceTree = "<group>"; };
+		5D576AD22ACF97BE0057F3A4 /* MultiPeerSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPeerSession.swift; sourceTree = "<group>"; };
+		5D576AD42ACF9BA50057F3A4 /* PairingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingView.swift; sourceTree = "<group>"; };
 		5DD644902AACF16A00F15A7F /* tictactoe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tictactoe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DD644932AACF16A00F15A7F /* tictactoeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tictactoeApp.swift; sourceTree = "<group>"; };
 		5DD644952AACF16A00F15A7F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,6 +67,8 @@
 				5DF601372AB3858600D7FA37 /* GameView.swift */,
 				5D576ABB2ACF28D60057F3A4 /* MainMenuView.swift */,
 				5DF6013B2AB3A2DE00D7FA37 /* SettingsView.swift */,
+				5D576ACF2ACF8EC00057F3A4 /* GameModeView.swift */,
+				5D576AD42ACF9BA50057F3A4 /* PairingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -93,6 +101,14 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		5D576AD12ACF97AE0057F3A4 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				5D576AD22ACF97BE0057F3A4 /* MultiPeerSession.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		5DD644872AACF16A00F15A7F = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +128,7 @@
 		5DD644922AACF16A00F15A7F /* tictactoe */ = {
 			isa = PBXGroup;
 			children = (
+				5D576AD12ACF97AE0057F3A4 /* Helpers */,
 				5D576AC62ACF2A970057F3A4 /* Models */,
 				5D576ABA2ACF28B30057F3A4 /* Views */,
 				5D576ACC2ACF2ECB0057F3A4 /* ViewModels */,
@@ -201,13 +218,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D576AD52ACF9BA50057F3A4 /* PairingView.swift in Sources */,
 				5D576ACE2ACF2EDE0057F3A4 /* GameViewModel.swift in Sources */,
 				5D576ACB2ACF2E200057F3A4 /* Player.swift in Sources */,
 				5D576AC12ACF29C80057F3A4 /* AboutTab.swift in Sources */,
 				5D576AC52ACF2A5A0057F3A4 /* Instructions.swift in Sources */,
+				5D576AD02ACF8EC00057F3A4 /* GameModeView.swift in Sources */,
 				5D576ABF2ACF29A80057F3A4 /* SettingsTab.swift in Sources */,
 				5D576AC82ACF2AA50057F3A4 /* GridState.swift in Sources */,
 				5D576AC32ACF29FC0057F3A4 /* GridSquare.swift in Sources */,
+				5D576AD32ACF97BE0057F3A4 /* MultiPeerSession.swift in Sources */,
 				5D576ABC2ACF28D60057F3A4 /* MainMenuView.swift in Sources */,
 				5DD644962AACF16A00F15A7F /* ContentView.swift in Sources */,
 				5DF6013C2AB3A2DE00D7FA37 /* SettingsView.swift in Sources */,
@@ -346,6 +366,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = tictactoe/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Tic-Tac-Toe";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -388,6 +409,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = tictactoe/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Tic-Tac-Toe";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
