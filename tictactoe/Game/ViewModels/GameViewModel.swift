@@ -75,10 +75,21 @@ class GameViewModel: ObservableObject {
         return nil
     }
     
+    func isPlayersTurn() -> Bool {
+        return !isCoop && ((isPlayer1 && currentPlayer.id == player1.id) || (!isPlayer1 && currentPlayer.id == player2.id))
+    }
+    
     // Function to update a particular grid with current turn value
     func updateGridState(xIndex: Int, yIndex: Int) {
+        if !isPlayersTurn() {
+            return
+        }
+        
         if grid[xIndex][yIndex] == .empty {
             grid[xIndex][yIndex] = currentPlayer.symbol
+            if isPlayersTurn() {
+                peerService!.send(move: GameMove(xIndex: xIndex, yIndex: yIndex))
+            }
             if currentPlayer.id == player1.id {
                 currentPlayer = player2
             } else {

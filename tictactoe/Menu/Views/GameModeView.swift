@@ -30,11 +30,10 @@ struct GameModeView: View {
                         symbol: .cross),
                     player2: Player(
                         name: player2Name == "" ? "Player 2": player2Name,
-                        symbol: .circle)),
-                displayedView: $displayedView)
+                        symbol: .circle)))
         case 3:
             PairingView(
-                pairingViewModel: MultiPeerService(playerName: player1Name),
+                peerService: MultiPeerService(playerName: player1Name),
                 displayedView: $displayedView)
         default:
             GameModeSelection(
