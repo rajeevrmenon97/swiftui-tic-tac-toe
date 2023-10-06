@@ -15,15 +15,19 @@ class GameViewModel: ObservableObject {
     
     @Published var isGameOver = false
     
-    private var player1: Player
-    private var player2: Player
-    private var multipeerSession: MultiPeerService?
+    private let player1: Player
+    private let player2: Player
+    private let isCoop: Bool
+    private let peerService: MultiPeerService?
+    private let isPlayer1: Bool
     
-    init(player1: Player, player2: Player, multipeerSession: MultiPeerService? = nil) {
+    init(player1: Player, player2: Player, isCoop: Bool = true, peerService: MultiPeerService? = nil, isPlayer1: Bool = true) {
         self.player1 = player1
         self.player2 = player2
         self.currentPlayer = player1
-        self.multipeerSession = multipeerSession
+        self.isCoop = isCoop
+        self.peerService = peerService
+        self.isPlayer1 = isPlayer1
     }
     
     // Function to clear the grid

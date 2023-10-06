@@ -6,41 +6,56 @@
 //
 
 import SwiftUI
-import os
 
 struct PairingView: View {
-    @ObservedObject var session: MultiPeerService
-    var name: String
+    @ObservedObject var peerService: MultiPeerService
     @Binding var displayedView: Int
-    var logger = Logger()
-    var oppName = ""
+    @State var isPlayer1 = true
     
     var body: some View {
-        if (!session.paired) {
+        if (!peerService.paired) {
             HStack {
-                List(session.availablePeers, id: \.self) { peer in
+                List(peerService.availablePeers, id: \.self) { peer in
                     Button(peer.displayName) {
-                        session.serviceBrowser.invitePeer(peer, to: session.session, withContext: nil, timeout: 30)
+                        peerService.serviceBrowser.invitePeer(peer, to: peerService.session, withContext: nil, timeout: 30)
                     }
                 }
             }
-            .alert("Received an invite from \(session.recvdInviteFrom?.displayName ?? "ERR")!", isPresented: $session.recvdInvite) {
+            .alert("Received an invite from \(peerService.recvdInviteFrom?.displayName ?? "ERR")!", isPresented: $peerService.recvdInvite) {
                 Button("Accept invite") {
-                    if (session.invitationHandler != nil) {
-                        session.invitationHandler!(true, session.session)
+                    if (peerService.invitationHandler != nil) {
+                        isPlayer1 = false
+                        peerService.invitationHandler!(true, peerService.session)
                     }
                 }
                 Button("Reject invite") {
-                    if (session.invitationHandler != nil) {
-                        session.invitationHandler!(false, nil)
+                    if (peerService.invitationHandler != nil) {
+                        peerService.invitationHandler!(false, nil)
                     }
                 }
             }
         } else {
-            GameView(gameViewModel: GameViewModel(
-                player1: Player(name: name, symbol: .cross),
-                player2: Player(name: session.recvdInviteFrom?.displayName ?? "Player 2", symbol: .circle)
-            ), displayedView: $displayedView)
+            if isPlayer1 {
+                GameView(
+                    gameViewModel: GameViewModel(
+                        player1: Player(name: peerService.myPeerID.displayName, symbol: .cross),
+                        player2: Player(name: peerService.recvdInviteFrom?.displayName ?? "Player 2", symbol: .circle),
+                        isCoop: false,
+                        peerService: peerService,
+                        isPlayer1: isPlayer1
+                    )
+                )
+            } else {
+                GameView(
+                    gameViewModel: GameViewModel(
+                        player1: Player(name: peerService.recvdInviteFrom?.displayName ?? "Player 2", symbol: .cross),
+                        player2: Player(name: peerService.myPeerID.displayName, symbol: .circle),
+                        isCoop: false,
+                        peerService: peerService,
+                        isPlayer1: isPlayer1
+                    )
+                )
+            }
         }
     }
 }

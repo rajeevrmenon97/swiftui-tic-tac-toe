@@ -13,8 +13,6 @@ struct GameView: View {
     
     @ObservedObject var gameViewModel: GameViewModel
     
-    @Binding var displayedView: Int
-    
     // Function to open youtube link
     func openYouTube() {
         if let youtubeURL = URL(string: "https://www.youtube.com/watch?v=dQw4w9WgXcQ") {

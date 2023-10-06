@@ -9,14 +9,9 @@ import Foundation
 import os
 import MultipeerConnectivity
 
-struct Move: Codable {
-    var xIndex: Int
-    var yIndex: Int
-}
-
 class MultiPeerService: NSObject, ObservableObject {
     private let serviceType = "rrm-tictactoe"
-    private var myPeerID: MCPeerID
+    let myPeerID: MCPeerID
     
     public let serviceAdvertiser: MCNearbyServiceAdvertiser
     public let serviceBrowser: MCNearbyServiceBrowser
@@ -25,14 +20,14 @@ class MultiPeerService: NSObject, ObservableObject {
     private let log = Logger()
     
     @Published var availablePeers: [MCPeerID] = []
-    @Published var receivedMove: Move? = nil
+    @Published var receivedMove: GameMove? = nil
     @Published var recvdInvite: Bool = false
     @Published var recvdInviteFrom: MCPeerID? = nil
     @Published var paired: Bool = false
     @Published var invitationHandler: ((Bool, MCSession?) -> Void)?
     
-    init(username: String) {
-        let peerID = MCPeerID(displayName: username)
+    init(playerName: String) {
+        let peerID = MCPeerID(displayName: playerName)
         self.myPeerID = peerID
         
         session = MCSession(peer: peerID, securityIdentity: nil, encryptionPreference: .none)
@@ -53,7 +48,7 @@ class MultiPeerService: NSObject, ObservableObject {
         serviceBrowser.stopBrowsingForPeers()
     }
     
-    func send(move: Move) {
+    func send(move: GameMove) {
         if !session.connectedPeers.isEmpty {
             log.info("sendMove: \(String(describing: move)) to \(self.session.connectedPeers[0].displayName)")
             do {
@@ -144,7 +139,7 @@ extension MultiPeerService: MCSessionDelegate {
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         do {
-            let move = try JSONDecoder().decode(Move.self, from: data)
+            let move = try JSONDecoder().decode(GameMove.self, from: data)
             log.info("didReceive move")
             // We received a move from the opponent, tell the GameView
             DispatchQueue.main.async {
