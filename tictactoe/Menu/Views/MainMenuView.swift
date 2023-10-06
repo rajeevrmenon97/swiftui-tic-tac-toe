@@ -9,10 +9,12 @@ import SwiftUI
 
 struct MainMenuView: View {
     var body: some View {
-        NavigationView {
+        NavigationStack {
             GeometryReader { geometry in
                 VStack{
                     Spacer()
+                    
+                    // Logo
                     HStack {
                         Spacer()
                         Image("logo")
@@ -23,12 +25,15 @@ struct MainMenuView: View {
                         Spacer()
                     }
                     
+                    // Main title
                     TitleText("Tic-Tac-Toe")
                     
+                    // Nav link to game mode selection
                     NavigationLink(destination: GameModeView()) {
                         BorderedText("Start Game")
                     }.padding()
                     
+                    // Nav link to settings
                     NavigationLink(destination: SettingsView()) {
                         BorderedText("Settings")
                     }.padding()

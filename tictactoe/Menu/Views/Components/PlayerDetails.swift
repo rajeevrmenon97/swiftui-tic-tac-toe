@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// View to get player names
 struct PlayerDetails: View {
     @Binding var isMultiPeer: Bool
     @Binding var player1Name: String
@@ -25,6 +26,7 @@ struct PlayerDetails: View {
             .border(.secondary)
             .padding(.bottom)
             
+            // Ask for second player's name in co-op mode
             if !isMultiPeer {
                 TitleText("Player 2 Name:")
                 TextField(

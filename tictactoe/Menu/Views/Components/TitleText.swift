@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Title text view
 struct TitleText: View {
     private let text: String
     

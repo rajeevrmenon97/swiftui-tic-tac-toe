@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Pre game menu
 struct GameModeView: View {
     
     @State private var displayedView = 0
@@ -33,8 +34,7 @@ struct GameModeView: View {
                         symbol: .circle)))
         case 3:
             PairingView(
-                peerService: MultiPeerService(playerName: player1Name),
-                displayedView: $displayedView)
+                peerService: MultiPeerService(playerName: player1Name))
         default:
             GameModeSelection(
                 isMultiPeer: $isMultiPeer,

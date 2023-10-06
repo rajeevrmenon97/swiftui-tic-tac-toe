@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Custom view used as body for buttons
 struct BorderedText: View {
     private let text: String
     

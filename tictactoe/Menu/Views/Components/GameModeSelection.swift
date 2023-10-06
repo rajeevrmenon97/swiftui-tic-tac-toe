@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// View to select between Co-op multiplayer
+// and local multiplayer
 struct GameModeSelection: View {
     
     @Binding var isMultiPeer: Bool

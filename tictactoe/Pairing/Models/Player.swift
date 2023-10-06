@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Class to hold player details
 class Player {
     
     init(name: String, symbol: GridState) {

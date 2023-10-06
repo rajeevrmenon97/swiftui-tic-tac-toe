@@ -12,16 +12,28 @@ class GameViewModel: ObservableObject {
     // Array holding the state of each square in the grid
     @Published var grid: [[GridState]] = Array(repeating: Array(repeating: .empty, count: 3), count: 3)
     
+    // Player who's turn it is now
     @Published var currentPlayer: Player
     
+    // Is the game over?
     @Published var isGameOver = false
     
+    // Is it a multipeer game?
     let isMultiPeer: Bool
+    
+    // Is this device the host of the game?
     let isHost: Bool
     
+    // Player 1: In multipeer sessions, this player is the host
     private let player1: Player
+    
+    // Player 2
     private let player2: Player
+    
+    // Multipeer connection service
     private let peerService: MultiPeerService?
+    
+    // Cancellables
     private var cancellables: Set<AnyCancellable> = []
     
     init(player1: Player, player2: Player, isMultiPeer: Bool = false, peerService: MultiPeerService? = nil, isHost: Bool = true) {
@@ -32,6 +44,7 @@ class GameViewModel: ObservableObject {
         self.peerService = peerService
         self.isHost = isHost
         
+        // Register observers for receiving moves from multipeer service
         if isMultiPeer {
             self.peerService!.receivedMove
                 .receive(on: DispatchQueue.main)
@@ -39,16 +52,6 @@ class GameViewModel: ObservableObject {
                     self.updateGridState(xIndex: move.xIndex, yIndex: move.yIndex)
                 }).store(in: &cancellables)
         }
-    }
-    
-    // Function to clear the grid
-    func resetGrid() {
-        for i in 0..<grid.count {
-            for j in 0..<grid[i].count {
-                grid[i][j] = .empty
-            }
-        }
-        currentPlayer = player1
     }
     
     // Function to check if the game is over, returns the winner or nil
@@ -86,21 +89,29 @@ class GameViewModel: ObservableObject {
         return nil
     }
     
+    // This function returns true if the current player is the
+    // player on this device in a multipeer session
     func isPlayersTurn() -> Bool {
         return isMultiPeer && ((isHost && currentPlayer.id == player1.id) || (!isHost && currentPlayer.id == player2.id))
     }
     
+    // Function which plays a turn for the current player
     func playTurn(xIndex: Int, yIndex: Int) {
-        if isPlayersTurn() {
+        // Multipeer session and
+        // The turn of the player on this device
+        if isPlayersTurn() && grid[xIndex][yIndex] == .empty {
             peerService!.send(move: GameMove(xIndex: xIndex, yIndex: yIndex))
         } else {
-            return
+            return // Do nothing, other player's turn
         }
+        
+        // Update the grid
         updateGridState(xIndex: xIndex, yIndex: yIndex)
     }
     
-    // Function to update a particular grid with current turn value
+    // Function to update a particular grid square
     func updateGridState(xIndex: Int, yIndex: Int) {
+        // Only update if grid is empty
         if grid[xIndex][yIndex] == .empty {
             grid[xIndex][yIndex] = currentPlayer.symbol
             if currentPlayer.id == player1.id {
@@ -110,6 +121,7 @@ class GameViewModel: ObservableObject {
             }
         }
         
+        // Check if the game is over
         if let winner = checkGameOver() {
             currentPlayer = winner
             isGameOver = true

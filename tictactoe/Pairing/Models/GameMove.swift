@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Struct representing a move
 struct GameMove: Codable {
     var xIndex: Int
     var yIndex: Int
