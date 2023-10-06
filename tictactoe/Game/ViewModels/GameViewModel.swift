@@ -18,6 +18,9 @@ class GameViewModel: ObservableObject {
     // Is the game over?
     @Published var isGameOver = false
     
+    // Is the game drawn?
+    var isGameDrawn = false
+    
     // Is it a multipeer game?
     let isMultiPeer: Bool
     
@@ -89,6 +92,17 @@ class GameViewModel: ObservableObject {
         return nil
     }
     
+    // Function to check if the grid is fully filled
+    func isGridFullyFilled() -> Bool {
+        for row in grid {
+            if row.contains(.empty) {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
     // This function returns true if the current player is the
     // player on this device in a multipeer session
     func isPlayersTurn() -> Bool {
@@ -123,9 +137,13 @@ class GameViewModel: ObservableObject {
         }
         
         // Check if the game is over
-        if let winner = checkGameOver() {
-            currentPlayer = winner
+        if isGridFullyFilled() {
+            isGameDrawn = true
             isGameOver = true
+            if let winner = checkGameOver() {
+                currentPlayer = winner
+                isGameDrawn = false
+            }
         }
     }
 }

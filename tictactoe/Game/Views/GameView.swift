@@ -29,22 +29,27 @@ struct GameView: View {
         var msg: String
         var buttonMsg = "Get the prize!"
         
-        // Local Multiplayer mode
-        if gameViewModel.isMultiPeer {
-            // Since the gameViewModel.currentPlayer is set as the winner when game is over
-            // gameViewModel.isPlayersTurn can be used to check
-            // if the player is the currentPlayer and thus the winner
-            if gameViewModel.isPlayersTurn() {
-                // If the player wins
-                msg = "You win!"
-            } else {
-                // The opponent wins
-                msg = "You lose!"
-                buttonMsg = "Get consolation prize!"
+        if gameViewModel.isGameDrawn {
+            msg = "Its a tie!"
+        } else {
+            // Local Multiplayer mode
+            if gameViewModel.isMultiPeer {
+                // Since the gameViewModel.currentPlayer is set as the winner when game is over
+                // gameViewModel.isPlayersTurn can be used to check
+                // if the player is the currentPlayer and thus the winner
+                if gameViewModel.isPlayersTurn() {
+                    // If the player wins
+                    msg = "You win!"
+                } else {
+                    // The opponent wins
+                    msg = "You lose!"
+                    buttonMsg = "Get consolation prize!"
+                }
+            } else { // When in Co-op mode
+                msg = "\(gameViewModel.currentPlayer.name) wins!"
             }
-        } else { // When in Co-op mode
-            msg = "\(gameViewModel.currentPlayer.name) wins!"
         }
+
         return Alert(
             title: Text("Game Over"),
             message: Text(msg),
