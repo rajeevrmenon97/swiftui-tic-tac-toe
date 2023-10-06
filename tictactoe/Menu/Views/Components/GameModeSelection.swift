@@ -16,13 +16,15 @@ struct GameModeSelection: View {
     
     var body: some View {
         VStack {
+            Text("Play on a single phone:")
             Button(action: {
                 isMultiPeer = false
                 displayedView = 1
             }, label: {
                 BorderedText("Co-op Multiplayer")
-            })
+            }).padding(.bottom)
             
+            Text("  Play on two phones:  ")
             Button(action: {
                 isMultiPeer = true
                 displayedView = 1

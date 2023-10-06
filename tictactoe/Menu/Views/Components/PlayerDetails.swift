@@ -16,7 +16,7 @@ struct PlayerDetails: View {
     
     var body: some View {
         VStack {
-            TitleText("Player 1 Name:")
+            TitleText(isMultiPeer ? "Player Name:" : "Player 1 Name:")
             TextField(
                 "Player 1",
                 text: $player1Name
