@@ -97,12 +97,13 @@ class GameViewModel: ObservableObject {
     
     // Function which plays a turn for the current player
     func playTurn(xIndex: Int, yIndex: Int) {
-        // Multipeer session and
-        // The turn of the player on this device
-        if isPlayersTurn() && grid[xIndex][yIndex] == .empty {
-            peerService!.send(move: GameMove(xIndex: xIndex, yIndex: yIndex))
-        } else {
-            return // Do nothing, other player's turn
+        if isMultiPeer {
+            // The turn of the player on this device
+            if isPlayersTurn() && grid[xIndex][yIndex] == .empty {
+                peerService!.send(move: GameMove(xIndex: xIndex, yIndex: yIndex))
+            } else {
+                return // Do nothing, other player's turn
+            }
         }
         
         // Update the grid
