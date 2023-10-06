@@ -56,7 +56,7 @@ struct PairingView: View {
                 GameView(
                     gameViewModel: GameViewModel(
                         player1: Player(name: peerService.myPeerID.displayName, symbol: .cross),
-                        player2: Player(name: peerService.recvdInviteFrom?.displayName ?? "Player 2", symbol: .circle),
+                        player2: Player(name: peerService.session.connectedPeers.first?.displayName ?? "Player 2", symbol: .circle),
                         isMultiPeer: true,
                         peerService: peerService,
                         isHost: isHost
