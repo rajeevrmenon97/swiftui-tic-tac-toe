@@ -14,6 +14,9 @@ struct PlayerDetails: View {
     @Binding var player2Name: String
     @Binding var displayedView: Int
     
+    @FocusState private var player1FieldIsFocused: Bool
+    @FocusState private var player2FieldIsFocused: Bool
+    
     var body: some View {
         VStack {
             TitleText(isMultiPeer ? "Player Name:" : "Player 1 Name:")
@@ -21,6 +24,7 @@ struct PlayerDetails: View {
                 "Player 1",
                 text: $player1Name
             )
+            .focused($player1FieldIsFocused)
             .textInputAutocapitalization(.never)
             .disableAutocorrection(true)
             .border(.secondary)
@@ -33,6 +37,7 @@ struct PlayerDetails: View {
                     "Player 2",
                     text: $player2Name
                 )
+                .focused($player2FieldIsFocused)
                 .textInputAutocapitalization(.never)
                 .disableAutocorrection(true)
                 .border(.secondary)
@@ -40,6 +45,8 @@ struct PlayerDetails: View {
             }
             
             Button(action: {
+                player1FieldIsFocused = false
+                player2FieldIsFocused = false
                 if isMultiPeer {
                     displayedView = 3
                 } else {
