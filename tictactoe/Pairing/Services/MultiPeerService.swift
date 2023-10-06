@@ -14,7 +14,7 @@ struct Move: Codable {
     var yIndex: Int
 }
 
-class MultipeerSession: NSObject, ObservableObject {
+class MultiPeerService: NSObject, ObservableObject {
     private let serviceType = "rrm-tictactoe"
     private var myPeerID: MCPeerID
     
@@ -67,7 +67,7 @@ class MultipeerSession: NSObject, ObservableObject {
     }
 }
 
-extension MultipeerSession: MCNearbyServiceAdvertiserDelegate {
+extension MultiPeerService: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
         //TODO: Inform the user something went wrong and try again
         log.error("ServiceAdvertiser didNotStartAdvertisingPeer: \(String(describing: error))")
@@ -87,7 +87,7 @@ extension MultipeerSession: MCNearbyServiceAdvertiserDelegate {
     }
 }
 
-extension MultipeerSession: MCNearbyServiceBrowserDelegate {
+extension MultiPeerService: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
         //TODO: Tell the user something went wrong and try again
         log.error("ServiceBroser didNotStartBrowsingForPeers: \(String(describing: error))")
@@ -112,7 +112,7 @@ extension MultipeerSession: MCNearbyServiceBrowserDelegate {
     }
 }
 
-extension MultipeerSession: MCSessionDelegate {
+extension MultiPeerService: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         log.info("peer \(peerID) didChangeState: \(state.rawValue)")
         

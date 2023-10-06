@@ -13,7 +13,7 @@ struct tictactoeApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainMenuView()
                 .preferredColorScheme(isDarkMode ? .dark : .light)
         }
     }

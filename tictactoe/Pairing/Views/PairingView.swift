@@ -9,7 +9,7 @@ import SwiftUI
 import os
 
 struct PairingView: View {
-    @ObservedObject var session: MultipeerSession
+    @ObservedObject var session: MultiPeerService
     var name: String
     @Binding var displayedView: Int
     var logger = Logger()

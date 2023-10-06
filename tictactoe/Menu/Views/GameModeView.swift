@@ -13,7 +13,7 @@ struct GameModeView: View {
     @State private var player1Name = ""
     @State private var player2Name = ""
     @State private var isCoop = true
-    @State var multpeerSession: MultipeerSession?
+    @State var multpeerSession: MultiPeerService?
     
     var gameModeSelectionView: some View {
         VStack {
@@ -107,7 +107,7 @@ struct GameModeView: View {
                 player2: Player(name: player2Name == "" ? "Player 2": player2Name, symbol: .circle)
             ), displayedView: $displayedView)
         case 3:
-            PairingView(session: MultipeerSession(username: player1Name), name: player1Name, displayedView: $displayedView)
+            PairingView(session: MultiPeerService(username: player1Name), name: player1Name, displayedView: $displayedView)
         default:
             gameModeSelectionView
         }
