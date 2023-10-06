@@ -137,13 +137,12 @@ class GameViewModel: ObservableObject {
         }
         
         // Check if the game is over
-        if isGridFullyFilled() {
+        if let winner = checkGameOver() {
+            isGameOver = true
+            currentPlayer = winner
+        } else if isGridFullyFilled() {
             isGameDrawn = true
             isGameOver = true
-            if let winner = checkGameOver() {
-                currentPlayer = winner
-                isGameDrawn = false
-            }
         }
     }
 }
