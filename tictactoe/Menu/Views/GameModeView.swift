@@ -12,13 +12,13 @@ struct GameModeView: View {
     @State private var displayedView = 0
     @State private var player1Name = ""
     @State private var player2Name = ""
-    @State private var isCoop = true
+    @State private var isMultiPeer = false
     
     var body: some View {
         switch (displayedView) {
         case 1:
             PlayerDetails(
-                isCoop: $isCoop,
+                isMultiPeer: $isMultiPeer,
                 player1Name: $player1Name,
                 player2Name: $player2Name,
                 displayedView: $displayedView)
@@ -37,7 +37,7 @@ struct GameModeView: View {
                 displayedView: $displayedView)
         default:
             GameModeSelection(
-                isCoop: $isCoop,
+                isMultiPeer: $isMultiPeer,
                 displayedView: $displayedView)
         }
     }

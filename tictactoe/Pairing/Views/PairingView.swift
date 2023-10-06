@@ -10,7 +10,7 @@ import SwiftUI
 struct PairingView: View {
     @ObservedObject var peerService: MultiPeerService
     @Binding var displayedView: Int
-    @State var isPlayer1 = true
+    @State var isHost = true
     
     var body: some View {
         if (!peerService.paired) {
@@ -24,7 +24,7 @@ struct PairingView: View {
             .alert("Received an invite from \(peerService.recvdInviteFrom?.displayName ?? "ERR")!", isPresented: $peerService.recvdInvite) {
                 Button("Accept invite") {
                     if (peerService.invitationHandler != nil) {
-                        isPlayer1 = false
+                        isHost = false
                         peerService.invitationHandler!(true, peerService.session)
                     }
                 }
@@ -35,14 +35,14 @@ struct PairingView: View {
                 }
             }
         } else {
-            if isPlayer1 {
+            if isHost {
                 GameView(
                     gameViewModel: GameViewModel(
                         player1: Player(name: peerService.myPeerID.displayName, symbol: .cross),
                         player2: Player(name: peerService.recvdInviteFrom?.displayName ?? "Player 2", symbol: .circle),
-                        isCoop: false,
+                        isMultiPeer: true,
                         peerService: peerService,
-                        isPlayer1: isPlayer1
+                        isHost: isHost
                     )
                 )
             } else {
@@ -50,9 +50,9 @@ struct PairingView: View {
                     gameViewModel: GameViewModel(
                         player1: Player(name: peerService.recvdInviteFrom?.displayName ?? "Player 2", symbol: .cross),
                         player2: Player(name: peerService.myPeerID.displayName, symbol: .circle),
-                        isCoop: false,
+                        isMultiPeer: true,
                         peerService: peerService,
-                        isPlayer1: isPlayer1
+                        isHost: isHost
                     )
                 )
             }

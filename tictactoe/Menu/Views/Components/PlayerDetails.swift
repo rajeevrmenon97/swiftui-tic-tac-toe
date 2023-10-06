@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PlayerDetails: View {
-    @Binding var isCoop: Bool
+    @Binding var isMultiPeer: Bool
     @Binding var player1Name: String
     @Binding var player2Name: String
     @Binding var displayedView: Int
@@ -25,7 +25,7 @@ struct PlayerDetails: View {
             .border(.secondary)
             .padding(.bottom)
             
-            if isCoop {
+            if !isMultiPeer {
                 TitleText("Player 2 Name:")
                 TextField(
                     "Player 2",
@@ -38,10 +38,10 @@ struct PlayerDetails: View {
             }
             
             Button(action: {
-                if isCoop {
-                    displayedView = 2
-                } else {
+                if isMultiPeer {
                     displayedView = 3
+                } else {
+                    displayedView = 2
                 }
             }, label: {
                 BorderedText(" Start Game ")

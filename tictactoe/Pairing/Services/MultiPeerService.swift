@@ -8,6 +8,7 @@
 import Foundation
 import os
 import MultipeerConnectivity
+import Combine
 
 class MultiPeerService: NSObject, ObservableObject {
     private let serviceType = "rrm-tictactoe"
@@ -20,11 +21,12 @@ class MultiPeerService: NSObject, ObservableObject {
     private let log = Logger()
     
     @Published var availablePeers: [MCPeerID] = []
-    @Published var receivedMove: GameMove? = nil
     @Published var recvdInvite: Bool = false
     @Published var recvdInviteFrom: MCPeerID? = nil
     @Published var paired: Bool = false
     @Published var invitationHandler: ((Bool, MCSession?) -> Void)?
+    
+    let receivedMove = PassthroughSubject<GameMove, Never>()
     
     init(playerName: String) {
         let peerID = MCPeerID(displayName: playerName)
@@ -141,10 +143,7 @@ extension MultiPeerService: MCSessionDelegate {
         do {
             let move = try JSONDecoder().decode(GameMove.self, from: data)
             log.info("didReceive move")
-            // We received a move from the opponent, tell the GameView
-            DispatchQueue.main.async {
-                self.receivedMove = move
-            }
+            self.receivedMove.send(move)
         } catch {
             log.info("didReceive invalid value \(data.count) bytes")
         }

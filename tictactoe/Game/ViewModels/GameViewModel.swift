@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 class GameViewModel: ObservableObject {
     // Array holding the state of each square in the grid
@@ -15,19 +16,29 @@ class GameViewModel: ObservableObject {
     
     @Published var isGameOver = false
     
+    let isMultiPeer: Bool
+    let isHost: Bool
+    
     private let player1: Player
     private let player2: Player
-    private let isCoop: Bool
     private let peerService: MultiPeerService?
-    private let isPlayer1: Bool
+    private var cancellables: Set<AnyCancellable> = []
     
-    init(player1: Player, player2: Player, isCoop: Bool = true, peerService: MultiPeerService? = nil, isPlayer1: Bool = true) {
+    init(player1: Player, player2: Player, isMultiPeer: Bool = false, peerService: MultiPeerService? = nil, isHost: Bool = true) {
         self.player1 = player1
         self.player2 = player2
         self.currentPlayer = player1
-        self.isCoop = isCoop
+        self.isMultiPeer = isMultiPeer
         self.peerService = peerService
-        self.isPlayer1 = isPlayer1
+        self.isHost = isHost
+        
+        if isMultiPeer {
+            self.peerService!.receivedMove
+                .receive(on: DispatchQueue.main)
+                .sink(receiveValue: { move in
+                    self.updateGridState(xIndex: move.xIndex, yIndex: move.yIndex)
+                }).store(in: &cancellables)
+        }
     }
     
     // Function to clear the grid
@@ -76,20 +87,22 @@ class GameViewModel: ObservableObject {
     }
     
     func isPlayersTurn() -> Bool {
-        return !isCoop && ((isPlayer1 && currentPlayer.id == player1.id) || (!isPlayer1 && currentPlayer.id == player2.id))
+        return isMultiPeer && ((isHost && currentPlayer.id == player1.id) || (!isHost && currentPlayer.id == player2.id))
+    }
+    
+    func playTurn(xIndex: Int, yIndex: Int) {
+        if isPlayersTurn() {
+            peerService!.send(move: GameMove(xIndex: xIndex, yIndex: yIndex))
+        } else {
+            return
+        }
+        updateGridState(xIndex: xIndex, yIndex: yIndex)
     }
     
     // Function to update a particular grid with current turn value
     func updateGridState(xIndex: Int, yIndex: Int) {
-        if !isPlayersTurn() {
-            return
-        }
-        
         if grid[xIndex][yIndex] == .empty {
             grid[xIndex][yIndex] = currentPlayer.symbol
-            if isPlayersTurn() {
-                peerService!.send(move: GameMove(xIndex: xIndex, yIndex: yIndex))
-            }
             if currentPlayer.id == player1.id {
                 currentPlayer = player2
             } else {

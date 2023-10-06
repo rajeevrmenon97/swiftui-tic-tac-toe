@@ -13,6 +13,8 @@ struct GameView: View {
     
     @ObservedObject var gameViewModel: GameViewModel
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     // Function to open youtube link
     func openYouTube() {
         if let youtubeURL = URL(string: "https://www.youtube.com/watch?v=dQw4w9WgXcQ") {
@@ -22,16 +24,27 @@ struct GameView: View {
     
     // Alert when the game is over
     var gameOverAlert: Alert {
-        let msg = "\(gameViewModel.currentPlayer.name) wins!"
+        var msg: String
+        var buttonMsg = "Get the prize!"
+        if gameViewModel.isMultiPeer {
+            if gameViewModel.isPlayersTurn() {
+                msg = "You win!"
+            } else {
+                msg = "You lose!"
+                buttonMsg = "Get consolation prize!"
+            }
+        } else {
+            msg = "\(gameViewModel.currentPlayer.name) wins!"
+        }
         return Alert(
             title: Text("Game Over"),
             message: Text(msg),
-            primaryButton: .default(Text("Get the prize!"), action: {
-                gameViewModel.resetGrid()
+            primaryButton: .default(Text(buttonMsg), action: {
                 openYouTube()
+                presentationMode.wrappedValue.dismiss()
             }),
-            secondaryButton: .default(Text("New Game"), action: {
-                gameViewModel.resetGrid()
+            secondaryButton: .default(Text("Exit"), action: {
+                presentationMode.wrappedValue.dismiss()
             })
         )
     }
@@ -51,7 +64,7 @@ struct GameView: View {
                             ForEach(0..<3) { j in
                                 GridSquare(size: geometry.size.width * 0.3, xIndex: i, yIndex: j, currentState: $gameViewModel.grid[i][j])
                                     .onTapGesture {
-                                        gameViewModel.updateGridState(xIndex: i, yIndex: j)
+                                        gameViewModel.playTurn(xIndex: i, yIndex: j)
                                     }.alert(isPresented: $gameViewModel.isGameOver) {
                                         gameOverAlert
                                     }
